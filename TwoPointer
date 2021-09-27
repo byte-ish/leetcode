@@ -1,0 +1,45 @@
+//Find a triplet that sum to a given value
+//Difficulty Level : Medium
+//Last Updated : 04 Jun, 2021
+
+//Given an array and a value, find if there is a triplet in array whose sum is equal to the given value. 
+//If there is such a triplet present in array, then print the triplet and return true. Else return false.
+
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+   int[] arr= new int[] {15,2,3,4,5,6,7,8,9,1};
+   int target=18;
+   //Sort the array O(nlogn)
+   Arrays.sort(arr);
+   int n=arr.length;
+   List<List<Integer>> resultList=new ArrayList<>();
+   Vector<Vector<Integer>> myVec=new Vector();
+   
+   for(int i=0;i<=n-3;i++){
+       //pair sum for remaining
+       int start=i+1;
+       int end=n-1;
+       
+       while(start<end){
+           
+           if((arr[i]+arr[start]+arr[end])==target){
+               Vector<Integer> temp=new Vector();
+               temp.add(arr[i]);
+                temp.add(arr[start]);
+                 temp.add(arr[end]);
+                 myVec.add(temp);
+               --end;
+               ++start;
+           }
+           else if(arr[i]+arr[start]+arr[end]>target){
+               --end;
+           }
+           else{
+               ++start;
+           }
+       }
+   }
+   System.out.println(myVec);
+    }
+}
